@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'Signup' }">ユーザー登録</router-link>
       <b-nav-item>{{ first_name }}</b-nav-item>
       <b-nav-item v-on:click="logOut">ログアウト</b-nav-item>
-      <b-nav-item disabled>Disabled</b-nav-item>
+      <router-link :to="{ name: 'Login' }">ログイン</router-link>
     </b-nav>
   </div>
 </template>
