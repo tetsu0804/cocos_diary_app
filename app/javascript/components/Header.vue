@@ -2,9 +2,9 @@
   <div>
     <b-navbar type="dark" variant="info">
       <b-navbar-nav>
-        <router-link class="nav-item":to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
-        <router-link class="nav-item":to="{ name: 'Signup' }">ユーザー登録</router-link>
-        <router-link  :to="{ name: 'Home' }" class="nav-item"> {{ first_name }}</router-link>
+        <router-link class="nav-item" :to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
+        <router-link class="nav-item" :to="{ name: 'Signup' }">ユーザー登録</router-link>
+        <router-link  :to="{ name: 'UserShow', params: { id: `${this.$store.state.id}`}}" class="nav-item"> {{ first_name }}</router-link>
         <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
         <router-link class="nav-item" :to="{ name: 'Login' }">ログイン</router-link>
       </b-navbar-nav>
