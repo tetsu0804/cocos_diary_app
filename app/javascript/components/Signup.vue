@@ -1,86 +1,124 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
-      >
+    <b-form @submit="onSignupSubmit">
+      <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
+      <b-form-group id="input-group-1" label="性" label-for="input-1">
         <b-form-input
           id="input-1"
-          v-model="form.email"
-          type="email"
+          v-model="last_name"
+          type="text"
           required
-          placeholder="Enter email"
+          placeholder="吉田"
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+      <b-form-group
+        id="input-group-2"
+        label="名"
+        label-for="input-2"
+      >
         <b-form-input
           id="input-2"
-          v-model="form.name"
+          v-model="first_name"
+          type="text"
           required
-          placeholder="Enter name"
+          placeholder="太郎"
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-        <b-form-select
+      <b-form-group id="input-group-3" label="メールアドレス" label-for="input-3">
+        <b-form-input
           id="input-3"
-          v-model="form.food"
-          :options="foods"
+          v-model="email"
+          type="email"
           required
-        ></b-form-select>
+          placeholder="example@example.com"
+          ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-4">
-        <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group id="input-group-4" label="パスワード" label-for="input-4">
+        <b-form-input
+          id="input-4"
+          v-model="password"
+          type="password"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group id="input-group-5" label="パスワード確認" label-for="input-5">
+        <b-form-input
+          id="input-5"
+          v-model="passsword_confirmation"
+          type="password"
+          required
+        ></b-form-input>
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
   </div>
 </template>
 
 <script>
+
   export default {
     data() {
       return {
-        form: {
-          email: '',
-          name: '',
-          food: null,
-          checked: []
-        },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-        show: true
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+        passsword_confirmation: '',
+        error: ''
       }
     },
+    created() {
+      this.checkCookieTrue()
+    },
+    updated() {
+      this.checkCookieTrue()
+    },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
+      onSignupSubmit() {
+        this.$http.plan.post('/api/v1/signup', { first_name: this.first_name, last_name: this.last_name, email: this.email, password: this.password, passsword_confirmation: this.passsword_confirmation})
+        .then(response => {
+          this.fetchSignup(response)
+        }).catch(error => {
+          this.signupFailure(error)
         })
+      },
+      fetchSignup(response) {
+        if( !response.data.cookie) {
+          this.signupFailure(response)
+          return
+        }
+        document.cookie = `cookie=${response.data.cookie}`
+        document.cookie = "signedIn=true"
+        this.$store.dispatch('doFetchStateId', response.data.user.id)
+        this.$store.dispatch('doFetchStateFirstName', response.data.user.first_name)
+        this.$store.dispatch('doFetchStateLastName', response.data.user.last_name)
+        this.$store.dispatch('doFetchStateEmail', response.data.user.email)
+        this.signedInTrue(document.cookie)
+        this.$router.push('/')
+      },
+      signedInTrue(data) {
+        let cookieSignedIns = data.split(';')
+        if (cookieSignedIns.includes("signedIn=true") || cookieSignedIns.includes(" signedIn=true")) {
+          this.$store.dispatch('doFetchStateSignIn', true)
+        } else {
+          this.signupFailure('error')
+        }
+      },
+      signupFailure(error) {
+        this.error =  (error.response && error.response.data && error.response.data.config) || "ユーザー登録失敗しましたの再度お願いします"
+        document.cookie = "cookie=; max-age=0"
+        document.cookie = "signedIn=; max-age=0"
+      },
+      checkCookieTrue() {
+        let checkCookies = document.cookie.split(';')
+        if (checkCookies.includes("signedIn=true") || checkCookies.includes(" signedIn=true") ) {
+          this.$router.push('/')
+        }
       }
     }
   }
