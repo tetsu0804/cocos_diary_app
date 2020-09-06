@@ -1,11 +1,11 @@
 <template>
   <div>
-    <b-nav>
-      <router-link :to="{ name: 'Home' }">COCO's Diary Application</router-link>
-      <router-link :to="{ name: 'Signup' }">ユーザー登録</router-link>
-      <b-nav-item>{{ first_name }}</b-nav-item>
-      <b-nav-item v-on:click="logOut">ログアウト</b-nav-item>
-      <router-link :to="{ name: 'Login' }">ログイン</router-link>
+    <b-nav class="nav">
+      <router-link class="nav-item":to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
+      <router-link class="nav-item":to="{ name: 'Signup' }">ユーザー登録</router-link>
+      <b-nav-item class="nav-item2"> {{ first_name }}</b-nav-item>
+      <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
+      <router-link class="nav-item" :to="{ name: 'Login' }">ログイン</router-link>
     </b-nav>
   </div>
 </template>
@@ -39,3 +39,19 @@
     }
   }
 </script>
+
+<style scoped>
+  .nav {
+    height: 60px;
+    background-color: rgb(250, 126, 204);
+  }
+  .nav-item {
+    color: rgb(255, 255, 255);
+    line-height: 60px;
+    margin-left: 5px;
+  }
+  .nav-item2 {
+    height: 60px;
+    line-height: 45px;
+  }
+</style>
