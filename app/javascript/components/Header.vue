@@ -1,12 +1,14 @@
 <template>
   <div>
-    <b-nav class="nav">
-      <router-link class="nav-item":to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
-      <router-link class="nav-item":to="{ name: 'Signup' }">ユーザー登録</router-link>
-      <b-nav-item class="nav-item2"> {{ first_name }}</b-nav-item>
-      <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
-      <router-link class="nav-item" :to="{ name: 'Login' }">ログイン</router-link>
-    </b-nav>
+    <b-navbar type="dark" variant="info">
+      <b-navbar-nav>
+        <router-link class="nav-item":to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
+        <router-link class="nav-item":to="{ name: 'Signup' }">ユーザー登録</router-link>
+        <router-link  :to="{ name: 'Home' }" class="nav-item"> {{ first_name }}</router-link>
+        <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
+        <router-link class="nav-item" :to="{ name: 'Login' }">ログイン</router-link>
+      </b-navbar-nav>
+    </b-navbar>
   </div>
 </template>
 
@@ -51,6 +53,7 @@
     margin-left: 5px;
   }
   .nav-item2 {
+    font-color: rgb(255, 255, 255);
     height: 60px;
     line-height: 45px;
   }
