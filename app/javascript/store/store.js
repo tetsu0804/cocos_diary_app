@@ -46,5 +46,9 @@ export default new Vuex.Store({
       commit('fetchStateSignIn', signIn)
     }
   },
-  plugins: [createPersistedState()]
+  plugins: [
+    createPersistedState(
+      { key: "coco_diary_app" }
+    )
+  ]
 })
