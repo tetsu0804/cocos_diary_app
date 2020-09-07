@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       post '/signup', controller: :users, action: :create
       get '/users/:id', controller: :users, action: :show
       patch '/users/:id', controller: :users, action: :update
-      delete '/signout', controller: :users, action: :destroy
+      delete '/signout/:id', controller: :users, action: :destroy
       post '/login', controller: :sessions, action: :create
       delete '/logout', controller: :sessions, action: :destroy
     end

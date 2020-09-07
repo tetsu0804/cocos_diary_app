@@ -65,7 +65,7 @@ import axios from "axios"
         this.$store.dispatch('doFetchStateFirstName', response.data.user.first_name)
         this.$store.dispatch('doFetchStateLastName', response.data.user.last_name)
         this.$store.dispatch('doFetchStateEmail', response.data.user.email)
-        this.$router.push('{name: UserShow, params: { id: response.data.user.id }}')
+        this.$router.push(`/users/${response.data.user.id}`)
       },
       userEditFailure(error) {
         this.error = "ユーザー編集失敗しました"
