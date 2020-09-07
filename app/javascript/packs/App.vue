@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <router-view></router-view>
-    <p>{{ message }}</p>
+    <b-container>
+      <Header></Header>
+      <router-view></router-view>
+      <p>{{ message }}</p>
+    </b-container>
   </div>
 </template>
 
