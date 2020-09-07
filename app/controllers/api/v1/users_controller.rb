@@ -12,6 +12,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    user = User.find(params[:id])
+
+    if user.update_attributes(first_name: params[:first_name], last_name: params[:last_name], email: params[:email])
+      render json: { user: user }
+    else
+      render json: "ユーザー編集失敗しました", status: :unauthorized
+    end
   end
 
   def destroy

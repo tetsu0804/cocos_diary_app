@@ -4,7 +4,7 @@
       <b-card title="プロフィール" text-variant="info" border-variant="info" bg-variant="white">
         <b-card-text>{{ last_name }} {{ first_name }} さん</b-card-text>
         <b-card-text>メールアドレス: {{ email}}</b-card-text>
-        <b-button variant="secondary">編集</b-button>
+        <router-link :to="{ name: 'UserEdit', params: {id: id, first_name: first_name, last_name: last_name, email: email }}" variant="secondary">編集</router-link>
         <b-button variant="danger">削除</b-button>
       </b-card>
     </b-overlay>
@@ -15,6 +15,7 @@
   import { mapState } from "vuex"
   export default {
     computed: mapState({
+      id: state => state.id,
       first_name: state => state.first_name,
       last_name: state => state.last_name,
       email: state => state.email
