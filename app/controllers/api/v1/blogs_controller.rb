@@ -2,7 +2,6 @@ class Api::V1::BlogsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    binding.pry
     user = User.find(params[:user_id])
     blog = user.blogs.build(blog_params)
     if blog.save
@@ -24,6 +23,13 @@ class Api::V1::BlogsController < ApplicationController
   end
 
   def index
+    blogs = Blog.all
+    render json: { blogs: blogs}
+  end
+
+  def all
+    blogs = Blog.all
+    render json: { blogs: blogs}
   end
 
   private

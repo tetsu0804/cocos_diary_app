@@ -37,12 +37,15 @@ import axios from "axios"
 
   export default {
     computed: mapState({
+      id: state => state.id,
       last_name: state => state.last_name,
       first_name: state => state.first_name
     }),
+    mounted() {
+    },
     methods: {
       onBlogsNewSubmit() {
-        axios.post(` /api/v1/users/${this.$route.params.id}/blogs`, { title: this.title, content: this.content})
+        axios.post(`/api/v1/users/${this.id}/blogs`, { title: this.title, content: this.content})
         .then(response => {
           this.$router.push('/')
         })
