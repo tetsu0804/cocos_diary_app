@@ -7,6 +7,7 @@
         <router-link  :to="{ name: 'UserShow', params: { id: `${this.$store.state.id}`}}" class="nav-item"> {{ first_name }}</router-link>
         <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
         <router-link class="nav-item" :to="{ name: 'Login' }">ログイン</router-link>
+        <router-link class="nav-item" :to="{ name: 'BlogNew', params: { id: `${this.$route.params.id}`}}"> ブログ作成</router-link>
       </b-navbar-nav>
     </b-navbar>
   </div>

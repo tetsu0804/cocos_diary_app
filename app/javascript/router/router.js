@@ -5,6 +5,7 @@ import Signup from "../components/Signup.vue"
 import Login from "../components/Login.vue"
 import UserShow from "../components/UserShow.vue"
 import UserEdit from "../components/UserEdit.vue"
+import BlogNew from "../components/BlogNew.vue"
 
 Vue.use(Router)
 
@@ -15,5 +16,6 @@ export default new Router({
     { path: "/login", component: Login, name: "Login"},
     { path: "/users/:id", component: UserShow, name: "UserShow"},
     { path: "/users/:id", component: UserEdit, name: "UserEdit"},
+    { path: "/users/:id/blog_new", component: BlogNew, name: "BlogNew"}
   ]
 })
