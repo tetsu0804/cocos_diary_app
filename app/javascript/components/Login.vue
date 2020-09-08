@@ -1,29 +1,44 @@
 <template>
   <div>
-    <b-form @submit="onLoginSubmit">
-      <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
+    <b-card
+    overlay
+    img-src="/img/IMG_0883.JPG"
+    img-alt="Card Image"
+  >
+    <b-card-text class="h1 text-white login-title-text">
+      COCO's DIARY....login
+    </b-card-text>
+    <b-card-text class="login-form">
+      <b-col sm="6">
+      <b-form @submit="onLoginSubmit">
+        <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
 
-      <b-form-group id="input-group-1" label="メールアドレス" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="email"
-          type="email"
-          required
-          placeholder="example@example.com"
-          ></b-form-input>
-      </b-form-group>
+          <b-form-group id="input-group-1" label="メールアドレス" label-for="input-1" class="text-info">
+            <b-form-input
+              id="input-1"
+              v-model="email"
+              type="email"
+              required
+              placeholder="example@example.com"
+              ></b-form-input>
+          </b-form-group>
 
-      <b-form-group id="input-group-2" label="パスワード" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="password"
-          type="password"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-    </b-form>
+          <b-form-group id="input-group-2" label="パスワード" label-for="input-2" class="text-info">
+            <b-form-input
+              id="input-2"
+              v-model="password"
+              type="password"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <div class="login-btn">
+          <b-button type="submit" variant="info" class="login-login-btn">ログイン</b-button>
+          <router-link :to="{name: 'Signup'}" class="btn btn-info login-signup-btn">ユーザー登録</router-link>
+          </div>
+        </b-form>
+        </b-col>
+      </b-card-text>
+    </b-card>
   </div>
 </template>
 
@@ -88,3 +103,23 @@
     }
   }
 </script>
+
+<style scoped>
+  .login-form {
+    margin-top:2%;
+  }
+  .login-title-text {
+    margin-top: 4%;
+    margin-left: 2%;
+  }
+  .login-btn {
+    display: flex;
+  }
+  .login-login-btn {
+    margin-right: 15px;
+    width: 48%;
+  }
+  .login-signup-btn {
+    width: 48%;
+  }
+</style>

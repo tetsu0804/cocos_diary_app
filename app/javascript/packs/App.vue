@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container>
+    <b-container class="container-fluid">
       <Header></Header>
       <router-view></router-view>
       <p>{{ message }}</p>

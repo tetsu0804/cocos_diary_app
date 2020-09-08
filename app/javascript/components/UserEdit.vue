@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p class="user-edit-title h5 text-info text-center">編集画面</p>
     <b-form @submit="onUserEditSubmit">
       <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
       <b-form-group id="input-group-1" label="性" label-for="input-1">
@@ -33,7 +34,7 @@
           ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="info">登録</b-button>
     </b-form>
   </div>
 </template>
@@ -73,3 +74,9 @@ import axios from "axios"
     }
   }
 </script>
+
+<style scoped>
+  .user-edit-title {
+    margin: 20px auto;
+  }
+</style>

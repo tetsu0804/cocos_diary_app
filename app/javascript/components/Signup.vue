@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p class="signup-title h5 text-info text-center">ユーザー登録</p>
     <b-form @submit="onSignupSubmit">
       <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
       <b-form-group id="input-group-1" label="性" label-for="input-1">
@@ -54,7 +55,8 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="info">登録</b-button>
+      <router-link :to="{name: 'Login'}" class="btn btn-info">ログイン</router-link>
     </b-form>
   </div>
 </template>
@@ -123,3 +125,9 @@
     }
   }
 </script>
+
+<style scoped>
+  .signup-title {
+    margin: 20px auto;
+  }
+</style>
