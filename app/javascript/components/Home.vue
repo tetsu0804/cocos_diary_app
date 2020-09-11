@@ -2,14 +2,13 @@
   <div>
     <p>Home.vue</p>
     <ul>
-      <li v-for="blog in blogs" :key="blog.id">{{ blog.title }}</li>
+      <router-link v-for="blog in blogs" :key="blog.id" :to="{name: 'BlogShow', params:{ user_id: blog.user_id , id: blog.id }}">{{ blog.title }}</router-link>
     </ul>
   </div>
 </template>
 
 <script>
 import axios from "axios"
-
   export default {
     data: function() {
       return {

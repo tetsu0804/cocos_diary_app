@@ -2,31 +2,19 @@
   <div>
     <p class="text-center h3 text-info">{{ last_name }} {{ first_name }} さんの新しいここの日記</p>
     <b-form @submit="onBlogsNewSubmit">
-      <b-form-group
-        id="input-group-1"
-        label="タイトル"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="title"
-          type="text"
-          required
-          placeholder="タイトル"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group id="input-group-2" label="内容" label-for="input-2">
-        <b-form-textarea
-          id="input-2"
-          v-model="content"
-          placeholder="今日のここちゃん"
-          rows="8"
-        >
-        </b-form-textarea>
-      </b-form-group>
-
-      <b-button type="submit" variant="info">登録</b-button>
+      <p>
+        <label>Title</label>
+        <input name="title" type="text" v-model="title"><br />
+      </p>
+      <p>
+        <label>Body</label>
+        <input name="content" type="text" v-model="content"><br />
+      </p>
+      <p>
+        <label>画像</label>
+        <input name="uploadedImage" type="file" ref="file" v-on:change="onFileChange()"><br />
+      </p>
+      <input type="submit" value="Submit">
     </b-form>
   </div>
 </template>
@@ -36,6 +24,16 @@ import { mapState } from "vuex"
 import axios from "axios"
 
   export default {
+    data: function() {
+      return {
+        file: '',
+        title: '',
+        content: '',
+        uploadedImage: ''
+      }
+    },
+    mounted(){
+    },
     computed: mapState({
       id: state => state.id,
       last_name: state => state.last_name,
@@ -44,12 +42,33 @@ import axios from "axios"
     mounted() {
     },
     methods: {
+      onFileChange() {
+        let eventFile = event.target.files[0] || event.dataTransfer.files
+        let reader = new FileReader()
+        reader.onload = () => {
+          this.uploadedImage = event.target.result
+          this.file = this.uploadedImage
+          console.log(reader.result)
+        }
+
+        reader.readAsDataURL(eventFile)
+
+      },
       onBlogsNewSubmit() {
-        axios.post(`/api/v1/users/${this.id}/blogs`, { title: this.title, content: this.content})
-        .then(response => {
-          this.$router.push('/')
-        })
+        return new Promise((resolve, _) => {
+           axios.post(`/api/v1/users/${this.id}/blogs`, { title: this.title, content: this.content, image: this.file})
+           .then(res => {
+             this.title = ""
+             this.content = ""
+             this.file = ""
+             this.uploadedImage = ''
+             this.$refs.file.value = ''
+             resolve(res)
+           }).catch(e => {
+             console.log(e)
+           })
+         })
+       }
       }
     }
-  }
 </script>
