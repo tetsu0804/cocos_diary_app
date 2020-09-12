@@ -19,9 +19,9 @@ class Api::V1::BlogsController < ApplicationController
     blog = Blog.find(params[:id])
     # eyecatch = blog.eyecatch
     if blog.eyecatch.attached?
-      blog.image = encode_base64(blog.eyecatch)
+      blog.eyecatch = encode_base64(blog.eyecatch)
     end
-    render json: { blog: blog, image: blog.image }
+    render json: { blog: blog}
   end
 
   def destroy
@@ -34,7 +34,14 @@ class Api::V1::BlogsController < ApplicationController
 
   def all
     blogs = Blog.all
-    render json: { blogs: blogs}
+    images =[]
+    blogs.each do |blog|
+      if blog.eyecatch.attached?
+        blog.image = encode_base64(blog.eyecatch)
+        images.push(blog.image)
+      end
+    end
+      render json: {blogs: blogs}
   end
 
   private

@@ -1,9 +1,7 @@
 <template>
   <div>
     <p>Home.vue</p>
-    <ul>
-      <router-link v-for="blog in blogs" :key="blog.id" :to="{name: 'BlogShow', params:{ user_id: blog.user_id , id: blog.id }}">{{ blog.title }}</router-link>
-    </ul>
+    <router-link v-for="blog in blogs" :to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}" :key="blog.id">{{blog.title}}</router-link>
   </div>
 </template>
 
@@ -12,7 +10,8 @@ import axios from "axios"
   export default {
     data: function() {
       return {
-        blogs: {}
+        blogs: {},
+        images: {}
       }
     },
     mounted() {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p> {{ blog.title }}</p>
-    <img :src="image" alt="image">
+    <img :src="blog.eyecatch" alt="blog.eyecatch">
   </div>
 </template>
 
@@ -19,7 +19,6 @@
       axios.get(`/api/v1/users/${this.$route.params.user_id}/blogs/${this.$route.params.id}`)
       .then(response => {
         this.blog = response.data.blog
-        this.image = response.data.image
       })
     }
   }
