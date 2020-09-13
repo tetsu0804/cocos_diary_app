@@ -48,7 +48,6 @@ import axios from "axios"
         reader.onload = () => {
           this.uploadedImage = event.target.result
           this.file = this.uploadedImage
-          console.log(reader.result)
         }
 
         reader.readAsDataURL(eventFile)
@@ -65,7 +64,6 @@ import axios from "axios"
              this.$refs.file.value = ''
              resolve(res)
            }).catch(e => {
-             console.log(e)
            })
          })
        }

@@ -19,7 +19,9 @@ class Api::V1::BlogsController < ApplicationController
     blog = Blog.find(params[:id])
     # eyecatch = blog.eyecatch
     if blog.eyecatch.attached?
-      blog.eyecatch = encode_base64(blog.eyecatch)
+      blog.blog_image = encode_base64(blog.eyecatch)
+    else
+      blog.blog_image = "/img/IMG_0883.JPG"
     end
     render json: { blog: blog}
   end
@@ -33,12 +35,12 @@ class Api::V1::BlogsController < ApplicationController
   end
 
   def all
-    blogs = Blog.all
-    images =[]
+    blogs = Blog.all.order(created_at: :desc)
     blogs.each do |blog|
       if blog.eyecatch.attached?
-        blog.image = encode_base64(blog.eyecatch)
-        images.push(blog.image)
+        blog.blog_image = encode_base64(blog.eyecatch)
+      else
+        blog.blog_image = "/img/IMG_0883.JPG"
       end
     end
       render json: {blogs: blogs}

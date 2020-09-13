@@ -1,7 +1,7 @@
 <template>
   <div>
     <p> {{ blog.title }}</p>
-    <img :src="blog.eyecatch" alt="blog.eyecatch">
+    <b-img-lazy :src="blog.blog_image" alt="blog.blog_image" width="600px" heigth="650px" center rounded="true"></b-img-lazy>
   </div>
 </template>
 
