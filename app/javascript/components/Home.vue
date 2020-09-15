@@ -7,8 +7,8 @@
             :img-src="blog.blog_image"
             :img-alt="blog.blog_image"
             img-top
-            img-height="300px"
-            img-width="200px"
+            img-height="360px"
+            img-width="320px"
             tag="article"
             style="width: 20rem;"
             border-variant="info"

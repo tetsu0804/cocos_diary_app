@@ -3,7 +3,7 @@
     <b-col sm="12">
       <b-row class="blog-show-table">
         <b-col class="blog-show-border text-info text-center" >作成者: {{ user.last_name}} {{ user.first_name }}さん</b-col>
-        <b-col class="blog-show-border text-info text-center">作成日: {{ blog.created_at}} </b-col>
+        <b-col class="blog-show-border text-info text-center">作成日: {{ blog.created_at | moment("YYYY年M月D日") }} </b-col>
       </b-row>
       <b-row>
         <b-col class="blog-show-title-border text-info">タイトル: {{ blog.title }}</b-col>
@@ -33,6 +33,11 @@
         user: {},
         blog: {},
         image: '',
+      }
+    },
+    computed: {
+      makeDate() {
+        return new Date(this.blog.created_at)
       }
     },
     mounted(){
