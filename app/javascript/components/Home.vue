@@ -1,7 +1,4 @@
 <template>
-
-
-
   <div>
     <p>Home.vue</p>
     <div class="overflow-auto">
@@ -21,17 +18,25 @@
           </b-card>
         </div>
       </b-card-group>
+      <b-col offset="5">
+        <paginate
+          :page-count="pagesAllNumber"
+          :page-range="3"
+          :margin-pages="2"
+          :click-handler="clickCallback"
+          :prev-text="'Prev'"
+          :next-text="'Next'"
+          :container-class="'pagination'"
+          page-class="'page-item'"
+          :page-link-class="'page-link'"
+          :prev-class="'page-item'"
+          :prev-link-class="'page-link'"
+          :next-class="'page-item'"
+          :next-link-class="'page-link'"
+          >
+        </paginate>
+      </b-col>
 
-      <paginate
-        :page-count="pagesAllNumber"
-        :page-range="3"
-        :margin-pages="2"
-        :click-handler="clickCallback"
-        :prev-text="'Prev'"
-        :next-text="'Next'"
-        :container-class="'pagination'"
-        :page-class="'page-item'">
-      </paginate>
     </div>
   </div>
 
@@ -81,6 +86,9 @@ import axios from "axios"
   }
   .homeBtn {
     width: 100%;
+    margin: 0 auto;
+  }
+  .paginate-home {
     margin: 0 auto;
   }
 </style>
