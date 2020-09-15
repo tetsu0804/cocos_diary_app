@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>Home.vue</p>
-    <div class="overflow-auto">
+    <div class="overflow-auto home-screen">
       <b-card-group deck  :key="i" class="homeCardStyle">
         <div sm="4" class="homeCard" v-for="blog in prossingBlogs" :key="blog.id">
           <b-card
@@ -77,7 +76,9 @@ import axios from "axios"
 </script>
 
 <style scoped>
-
+  .home-screen {
+    margin-top: 15px;
+  }
   .homeCardStyle {
     margin: 0 auto;
   }

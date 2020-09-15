@@ -3,7 +3,6 @@
     <b-container class="container-fluid">
       <Header></Header>
       <router-view></router-view>
-      <p>{{ message }}</p>
     </b-container>
   </div>
 </template>
@@ -14,7 +13,6 @@ import Header from "../components/Header.vue"
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
     }
   },
   components: {
