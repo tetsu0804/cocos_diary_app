@@ -4,11 +4,9 @@
 
   <div>
     <p>Home.vue</p>
-    <p>{{ pageNumber }} </p>
     <div class="overflow-auto">
-      <div v-for="(i, index) in blogs.slice((pageNumber -1) * 3, pageNumber * 3 )">
       <b-card-group deck  :key="i" class="homeCardStyle">
-        <div sm="4" class="homeCard" v-for="blog in blogs.slice( index * 3, (index + 1) * 3 )">
+        <div sm="4" class="homeCard" v-for="blog in prossingBlogs" :key="blog.id">
           <b-card
             :img-src="blog.blog_image"
             :img-alt="blog.blog_image"
@@ -19,17 +17,21 @@
             style="width: 20rem;"
             border-variant="info"
           >
-            <router-link class="btn btn-info homeBtn":to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.id }}</router-link>
+            <router-link class="btn btn-info homeBtn":to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.title }}</router-link>
           </b-card>
         </div>
       </b-card-group>
-      </div>
-      <b-pagination-nav
-        v-model="pageNumber"
-        :number-of-pages="pagesAllNumber"
-        base-url="#"
-        first-number
-      ></b-pagination-nav>
+
+      <paginate
+        :page-count="pagesAllNumber"
+        :page-range="3"
+        :margin-pages="2"
+        :click-handler="clickCallback"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        :container-class="'pagination'"
+        :page-class="'page-item'">
+      </paginate>
     </div>
   </div>
 
@@ -40,27 +42,31 @@ import axios from "axios"
   export default {
     data: function() {
       return {
+        prossingBlogs: {},
         blogs: {},
-        images: {},
-        pageNumber: 1,
+        thisPageNum: 1
       }
     },
-    mounted() {
-      this.allBlogs()
+    created() {
+      axios.get('/api/v1/blogs').then(response => {
+        let self = this
+        let currentNumber =  this.thisPageNum * 9
+        self.blogs = response.data.blogs
+        self.prossingBlogs = self.blogs.slice(currentNumber - 9, currentNumber)
+      })
+      console.log('created')
     },
     computed: {
-      allBlogs() {
-        axios.get('/api/v1/blogs')
-        .then(response => {
-          this.blogs = response.data.blogs
-        })
-      },
       pagesAllNumber() {
         return Math.ceil(this.blogs.length / 9)
       }
     },
     methods: {
-
+      clickCallback(pageNum) {
+        this.thisPageNum = pageNum
+        let changeNumber =  this.thisPageNum * 9
+        this.prossingBlogs = this.blogs.slice(changeNumber -9,changeNumber )
+      }
     }
   }
 </script>
