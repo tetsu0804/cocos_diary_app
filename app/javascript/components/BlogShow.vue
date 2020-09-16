@@ -1,6 +1,8 @@
 <template>
   <div>
     <b-col sm="12">
+      <p>state.id: {{ this.$store.state.id}}</p>
+      <p>blog.user_id: {{ this.blog.user_id}}</p>
       <b-row class="blog-show-table">
         <b-col class="blog-show-border text-info text-center" >作成者: {{ user.last_name}} {{ user.first_name }}さん</b-col>
         <b-col class="blog-show-border text-info text-center">作成日: {{ blog.created_at | moment("YYYY年M月D日") }} </b-col>
@@ -20,6 +22,7 @@
           </b-overlay>
         </b-col>
      </b-row>
+     <router-link v-if="this.$store.state.id === this.blog.user_id":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="btn btn-info">編集</router-link>
     </b-col>
   </div>
 </template>
