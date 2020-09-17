@@ -61,7 +61,6 @@ import axios from "axios"
       console.log('created')
     },
     mounted(){
-  debugger
     },
     computed: {
       pagesAllNumber() {

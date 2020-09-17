@@ -34,6 +34,13 @@ class Api::V1::BlogsController < ApplicationController
   end
 
   def destroy
+    blog = Blog.find(params[:id])
+  binding.pry
+    if blog.eyecatch.attached?
+      blog.eyecatch.purge
+    end
+    blog.destroy
+    head :no_content
   end
 
   def index

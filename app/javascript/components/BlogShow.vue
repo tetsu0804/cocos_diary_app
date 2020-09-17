@@ -22,7 +22,15 @@
           </b-overlay>
         </b-col>
      </b-row>
-     <router-link v-if="this.$store.state.id === this.blog.user_id":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="btn btn-info">編集</router-link>
+
+       <b-row>
+        <b-col>
+          <router-link v-if="this.$store.state.id === this.blog.user_id":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="btn btn-info">編集</router-link>
+       </b-col>
+       <b-col>
+        <b-button variant="danger" v-on:click="deleteBlogs">削除</b-button>
+       </b-col>
+      </b-row>
     </b-col>
   </div>
 </template>
@@ -49,7 +57,19 @@
         this.blog = response.data.blog
         this.user = response.data.user
       })
-
+    },
+    methods: {
+      deleteBlogs() {
+        return new Promise((resolve, _) => {
+          axios.delete(`/api/v1/users/${this.$store.state.id}/blogs/${this.blog.id}`)
+          .then( response => {
+            this.blog = ''
+            this.user = ''
+            this.$store.dispatch('doDeleteStateBlogId', {id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at})
+            this.$router.push('/')
+          })
+        })
+      }
     }
   }
 </script>

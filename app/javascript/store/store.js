@@ -52,7 +52,13 @@ export default new Vuex.Store({
           delete deleteBlogarrays[i].content
           delete deleteBlogarrays[i]
       }
-    }
+    },
+   deleteStateBlogId(state, {id, title, content, created_at}) {
+     delete state.blogs[id].id
+     delete state.blogs[id].title
+     delete state.blogs[id].content
+     delete state.blogs[id].created_at
+   }
   },
   actions: {
     doFetchStateId({ commit }, id) {
@@ -78,6 +84,9 @@ export default new Vuex.Store({
     },
     doDeleteStateBlogs({ commit }) {
       commit('deleteStateBlogs')
+    },
+    doDeleteStateBlogId( { commit}, {id, title, content, created_at}) {
+      commit('deleteStateBlogId', {id: id, title: title, content: content, created_at: created_at})
     }
   },
   plugins: [
