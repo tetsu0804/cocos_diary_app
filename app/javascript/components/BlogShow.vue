@@ -49,6 +49,7 @@
         this.blog = response.data.blog
         this.user = response.data.user
       })
+
     }
   }
 </script>

@@ -10,7 +10,15 @@ export default new Vuex.Store({
     first_name: "",
     last_name: "",
     email: "",
-    signIn: ""
+    signIn: "",
+    blogs: [
+      {
+        id: '',
+       title: '',
+       content: '',
+       created_at: ''
+     }
+    ]
   },
   mutations: {
     fetchStateId(state, id) {
@@ -27,6 +35,23 @@ export default new Vuex.Store({
     },
     fetchStateSignIn(state, signIn) {
       state.signIn = signIn
+    },
+    fetchStateBlogs(state, {id, title, content, created_at} ) {
+      let fakeBlog = {id: id, title: title, content: content, created_at: created_at}
+        state.blogs.push(fakeBlog)
+    },
+    fetchStateEditBlogs(state, {id, title, content }) {
+      state.blogs[id].title = title
+      state.blogs[id].content = content
+    },
+    deleteStateBlogs(state) {
+      let deleteBlogarrays = state.blogs
+      for (let i = 0; i < deleteBlogarrays.length; i++) {
+          delete deleteBlogarrays[i].id
+          delete deleteBlogarrays[i].title
+          delete deleteBlogarrays[i].content
+          delete deleteBlogarrays[i]
+      }
     }
   },
   actions: {
@@ -44,6 +69,15 @@ export default new Vuex.Store({
     },
     doFetchStateSignIn( { commit }, signIn) {
       commit('fetchStateSignIn', signIn)
+    },
+    doFetchStateBlogs( { commit }, { id, title, content, created_at}) {
+      commit('fetchStateBlogs', { id: id, title: title, content: content, created_at: created_at } )
+    },
+    doFetchStateEditBlogs( { commit }, { id, title, content }) {
+      commit('fetchStateEditBlogs', { id: id, title: title, content: content })
+    },
+    doDeleteStateBlogs({ commit }) {
+      commit('deleteStateBlogs')
     }
   },
   plugins: [

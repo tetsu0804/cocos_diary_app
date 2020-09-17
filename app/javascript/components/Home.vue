@@ -60,6 +60,9 @@ import axios from "axios"
       })
       console.log('created')
     },
+    mounted(){
+  debugger
+    },
     computed: {
       pagesAllNumber() {
         return Math.ceil(this.blogs.length / 9)

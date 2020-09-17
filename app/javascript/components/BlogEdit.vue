@@ -1,9 +1,9 @@
 <template>
   <div>
-    <router-link :to="{name: 'BlogShow', params: {user_id: this.$route.params.user_id, id: this.$route.params.id}}">戻る</router-link>
+    <router-link :to="{name: 'BlogShow', params: {user_id: this.user_id, id: this.blog.id}}">戻る</router-link>
     Blog Edit
 
-    <p class="text-center h3 text-info">{{ created_at | moment("YYYY年M月D日")}}の{{ this.$route.params.last_name }} {{ this.$route.params.first_name }} さんのここの日記を編集</p>
+    <p class="text-center h3 text-info">{{ blog.created_at | moment("YYYY年M月D日")}}の{{ last_name }} {{ first_name }} さんのここの日記を編集</p>
 
     <b-form @submit="onBlogsEditSubmit">
 
@@ -14,7 +14,7 @@
     >
       <b-form-input
         id="input-1"
-        v-model="title"
+        v-model="blog.title"
         type="text"
         required
         placeholder="今日の可愛いここちゃん"
@@ -27,20 +27,13 @@
       label-for="input-2"
       >
       <b-form-textarea
-        v-model="content"
+        v-model="blog.content"
         id="textarea-rows"
         placeholder="朝7時に起きてすぐにウンチを.................."
         rows="8"
       ></b-form-textarea>
     </b-form-group>
 
-    <b-form-file
-      v-model="file"
-      :state="Boolean(file)"
-      placeholder="ここちゃんの可愛い写真を選んでね"
-      drop-placeholder="Drop file here..."
-      v-on:change="onFileChange()"
-    ></b-form-file>
       <b-button block class="blog-new-btn" variant="info" type="submit">投稿</b-button>
     </b-form>
 
@@ -53,27 +46,44 @@
   export default {
     data: function() {
       return {
-          title: title,
-          content: content,
-          created_at: created_at,
+          blog: {},
           first_name: frist_name,
-          last_name: last_name
+          last_name: last_name,
+          user_id: user_id,
+          uploadedEditImage: '',
       }
     },
     created() {
-      this.title = this.$route.params.title,
-      this.content = this.$route.params.content,
-      this.created_at =  this.$route.params.created_at,
-      this.first_name = this.$route.params.frist_name,
-      this.last_name = this.$route.params.last_name
       console.log('created')
+      let num = this.$route.params.id
+      let editBlogs = this.$store.state.blogs
+      this.blog = editBlogs[num]
+      this.first_name = this.$store.state.first_name
+      this.last_name = this.$store.state.last_name
+      this.user_id = this.$store.state.id
+    },
+    computed: {
     },
     updated() {
       console.log('updated')
     },
+    mounted() {
+      console.log('mounted')
+    },
     methods: {
       onBlogsEditSubmit() {
-
+        return new Promise((resolve, _) => {
+          axios.patch(`/api/v1/users/${this.user_id}/blogs/${this.blog.id}`, { id: this.blog.id, title: this.blog.title, content: this.blog.content })
+          .then(response => {
+            this.blog = ""
+            this.first_name = ""
+            this.last_name = ""
+            user_id: ""
+            uploadedEditImage: ""
+            this.$store.dispatch('doFetchStateEditBlogs', { id: response.data.blog.id, title: response.data.blog.title, content: response.data.blog.content })
+            this.$router.push('/')
+          })
+        })
       }
     }
 

@@ -13,6 +13,12 @@ class Api::V1::BlogsController < ApplicationController
   end
 
   def update
+    blog = Blog.find(params[:id])
+    if blog.update_attributes(blog_params)
+      render json: { blog: blog }
+    else
+      render json: "ブログ編集失敗しました", status: :unauthorized
+    end
   end
 
   def show

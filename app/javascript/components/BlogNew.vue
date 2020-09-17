@@ -83,7 +83,7 @@ import axios from "axios"
              this.content = ""
              this.file = ""
              this.uploadedImage = ''
-             this.$refs.file.value = ''
+             this.$store.dispatch('doFetchStateBlogs', { id: res.data.blog.id, title: res.data.blog.title, content: res.data.blog.content, created_at: res.data.blog.created_at } )
              resolve(res)
            }).catch(e => {
            })
