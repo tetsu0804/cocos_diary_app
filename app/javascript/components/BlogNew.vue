@@ -84,6 +84,7 @@ import axios from "axios"
              this.file = ""
              this.uploadedImage = ''
              this.$store.dispatch('doFetchStateBlogs', { id: res.data.blog.id, title: res.data.blog.title, content: res.data.blog.content, created_at: res.data.blog.created_at } )
+             this.$router.push('/')
              resolve(res)
            }).catch(e => {
            })
