@@ -37,7 +37,7 @@
           this.$store.dispatch('fetchStateEmail', "")
           this.$store.dispatch('fetchStateSignIn', "")
 
-          this.$router.push('/')
+          this.$router.push({name: "Login"})
         })
       }
     }
