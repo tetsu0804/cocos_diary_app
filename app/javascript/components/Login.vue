@@ -52,6 +52,8 @@
         error: ''
       }
     },
+    mounted() {
+    },
     created() {
       this.checkLoginCookieTrue()
     },

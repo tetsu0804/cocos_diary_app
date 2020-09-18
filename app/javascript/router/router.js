@@ -11,7 +11,7 @@ import BlogEdit from "../components/BlogEdit.vue"
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     { path: "/", component: Home, name: "Home"},
     { path: "/signup", component: Signup, name: "Signup"},
@@ -23,3 +23,24 @@ export default new Router({
     { path: "/users/:user_id/blogs/:id/edit", component: BlogEdit, name: "BlogEdit"}
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let documentCookie = document.cookie
+  let cookieSplits = documentCookie.split(';')
+  let cookiArrays = []
+  cookieSplits.forEach(el => {
+    cookiArrays.push(el.trim())
+  })
+
+
+  if(to.name === 'Signup' && !cookiArrays.includes('signedIn=true') ) {
+    next()
+  } else if (to.name !== 'Login' && !cookiArrays.includes('signedIn=true') ) {
+    next({ name: 'Login'})
+
+  } else {
+    next()
+  }
+})
+
+export default router

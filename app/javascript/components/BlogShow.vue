@@ -1,37 +1,38 @@
 <template>
   <div>
-    <b-col sm="12">
-      <p>state.id: {{ this.$store.state.id}}</p>
-      <p>blog.user_id: {{ this.blog.user_id}}</p>
-      <b-row class="blog-show-table">
-        <b-col class="blog-show-border text-info text-center" >作成者: {{ user.last_name}} {{ user.first_name }}さん</b-col>
-        <b-col class="blog-show-border text-info text-center">作成日: {{ blog.created_at | moment("YYYY年M月D日") }} </b-col>
-      </b-row>
-      <b-row>
-        <b-col class="blog-show-title-border text-info">タイトル: {{ blog.title }}</b-col>
-      </b-row>
+    <b-row>
+      <b-col offset="1" sm="10">
 
-        <b-img-lazy :src="blog.blog_image" alt="blog.blog_image" width="600px" heigth="650px" center rounded="true" class="blog-show-image"></b-img-lazy>
+        <b-row class="blog-show-table">
+          <b-col class="blog-show-border text-info text-center" >作成者: {{ user.last_name}} {{ user.first_name }}さん</b-col>
+          <b-col class="blog-show-border text-info text-center">作成日: {{ blog.created_at | moment("YYYY年M月D日") }} </b-col>
+        </b-row>
+        <b-row>
+          <b-col class="blog-show-title-border text-info">タイトル: {{ blog.title }}</b-col>
+        </b-row>
 
-      <b-row>
-        <b-col>
-          <b-overlay :show="show" rounded="sm">
-            <b-card-text class="text-center">
-              {{ blog.content}}
-            </b-card-text>
-          </b-overlay>
-        </b-col>
-     </b-row>
+          <b-img-lazy :src="blog.blog_image" alt="blog.blog_image" width="600px" heigth="650px" center rounded="true" class="blog-show-image"></b-img-lazy>
 
-       <b-row>
-        <b-col>
-          <router-link v-if="this.$store.state.id === this.blog.user_id":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="blog-show-btn btn btn-info" >編集</router-link>
-       </b-col>
-       <b-col>
-        <b-button class="blog-show-btn" variant="danger" v-on:click="deleteBlogs">削除</b-button>
-       </b-col>
-      </b-row>
-    </b-col>
+        <b-row>
+          <b-col>
+            <b-overlay :show="show" rounded="sm">
+              <b-card-text class="text-center">
+                {{ blog.content}}
+              </b-card-text>
+            </b-overlay>
+          </b-col>
+       </b-row>
+
+         <b-row v-if="this.$store.state.id === this.blog.user_id">
+          <b-col>
+            <router-link :to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="blog-show-btn btn btn-info" >編集</router-link>
+         </b-col>
+         <b-col>
+          <b-button class="blog-show-btn" variant="danger" v-on:click="deleteBlogs">削除</b-button>
+         </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -94,6 +95,7 @@
     border-radius: 6px;
   }
   .blog-show-btn {
+    margin: 15px 0;
     width: 100%;
   }
 </style>

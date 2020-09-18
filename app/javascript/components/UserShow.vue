@@ -1,13 +1,17 @@
 <template>
   <div>
-    <b-overlay  rounded="sm" class="user-show" >
-      <b-card title="プロフィール" text-variant="info" border-variant="info" bg-variant="white">
-        <b-card-text>{{ last_name }} {{ first_name }} さん</b-card-text>
-        <b-card-text>メールアドレス: {{ email}}</b-card-text>
-        <router-link :to="{ name: 'UserEdit', params: {id: id, first_name: first_name, last_name: last_name, email: email }}" class="btn btn-info">編集</router-link>
-        <b-button variant="danger" v-on:click="userDelete">削除</b-button>
-      </b-card>
-    </b-overlay>
+    <b-row>
+      <b-col offset="1" sm="10">
+        <b-overlay  rounded="sm" class="user-show" >
+          <b-card title="プロフィール" text-variant="info" border-variant="info" bg-variant="white">
+            <b-card-text>{{ last_name }} {{ first_name }} さん</b-card-text>
+            <b-card-text>メールアドレス: {{ email}}</b-card-text>
+            <router-link :to="{ name: 'UserEdit', params: {id: id, first_name: first_name, last_name: last_name, email: email }}" class="btn btn-info">編集</router-link>
+            <b-button variant="danger" v-on:click="userDelete">削除</b-button>
+          </b-card>
+        </b-overlay>
+      </b-col>
+    </b-row>
   </div>
 </template>
 

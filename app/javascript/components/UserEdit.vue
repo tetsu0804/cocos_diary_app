@@ -1,41 +1,45 @@
 <template>
   <div>
-    <p class="user-edit-title h5 text-info text-center">編集画面</p>
-    <b-form @submit="onUserEditSubmit">
-      <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
-      <b-form-group id="input-group-1" label="性" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="last_name"
-          type="text"
-          required
-        ></b-form-input>
-      </b-form-group>
+    <b-row>
+      <b-col offset="1" sm="10">
+        <p class="user-edit-title h5 text-info text-center">編集画面</p>
+        <b-form @submit="onUserEditSubmit">
+          <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
+          <b-form-group id="input-group-1" label="性" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              v-model="last_name"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
 
-      <b-form-group
-        id="input-group-2"
-        label="名"
-        label-for="input-2"
-      >
-        <b-form-input
-          id="input-2"
-          v-model="first_name"
-          type="text"
-          required
-        ></b-form-input>
-      </b-form-group>
+          <b-form-group
+            id="input-group-2"
+            label="名"
+            label-for="input-2"
+          >
+            <b-form-input
+              id="input-2"
+              v-model="first_name"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
 
-      <b-form-group id="input-group-3" label="メールアドレス" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="email"
-          type="email"
-          required
-          ></b-form-input>
-      </b-form-group>
+          <b-form-group id="input-group-3" label="メールアドレス" label-for="input-3">
+            <b-form-input
+              id="input-3"
+              v-model="email"
+              type="email"
+              required
+              ></b-form-input>
+          </b-form-group>
 
-      <b-button type="submit" variant="info">登録</b-button>
-    </b-form>
+          <b-button type="submit" variant="info">登録</b-button>
+        </b-form>
+      </b-col>
+    </b-row>
   </div>
 </template>
 

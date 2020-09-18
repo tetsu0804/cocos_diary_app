@@ -35,7 +35,7 @@ class Api::V1::BlogsController < ApplicationController
 
   def destroy
     blog = Blog.find(params[:id])
-  binding.pry
+
     if blog.eyecatch.attached?
       blog.eyecatch.purge
     end

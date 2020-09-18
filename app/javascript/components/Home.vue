@@ -1,5 +1,7 @@
 <template>
   <div>
+  <b-row>
+  <b-col offset="1" sm="10">
     <div class="overflow-auto home-screen">
       <b-card-group deck  :key="i" class="homeCardStyle">
         <div sm="4" class="homeCard" v-for="blog in prossingBlogs" :key="blog.id">
@@ -37,6 +39,8 @@
       </b-col>
 
     </div>
+    </b-col>
+    </b-row>
   </div>
 
 </template>
@@ -58,9 +62,8 @@ import axios from "axios"
         self.blogs = response.data.blogs
         self.prossingBlogs = self.blogs.slice(currentNumber - 9, currentNumber)
       })
-      console.log('created')
     },
-    mounted(){
+    mounted() {
     },
     computed: {
       pagesAllNumber() {
