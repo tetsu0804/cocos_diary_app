@@ -1,7 +1,8 @@
-<template>
-  <div v-if="this.$store.state.signIn">
+<template >
+  <div>
+    <template v-if="this.$store.state.signIn === true">
     <b-row>
-      <b-col offset="1" sm="10" style="background-color: #17a2b8">
+      <b-col offset="1" sm="10" style="background-color: #17a2b8"  key="header-desplay">
         <b-navbar type="dark" variant="info">
           <b-navbar-nav>
 
@@ -16,6 +17,7 @@
         </b-navbar>
       </b-col>
     </b-row>
+    </template>
   </div>
 </template>
 
@@ -37,11 +39,11 @@
           document.cookie = "cookie=; max-age=0"
           document.cookie = "signedIn=; max-age=0"
           localStorage.removeItem("coco_diary_app")
-          this.$store.dispatch('fetchStateId', "")
-          this.$store.dispatch('fetchStateFirstName', "")
-          this.$store.dispatch('fetchStateLastName', "")
-          this.$store.dispatch('fetchStateEmail', "")
-          this.$store.dispatch('fetchStateSignIn', "")
+          this.$store.dispatch('doFetchStateId', "")
+          this.$store.dispatch('doFetchStateFirstName', "")
+          this.$store.dispatch('doFetchStateLastName', "")
+          this.$store.dispatch('doFetchStateEmail', "")
+          this.$store.dispatch('doFetchStateSignIn', "")
 
           this.$router.push({name: "Login"})
         })

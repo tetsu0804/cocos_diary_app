@@ -3,7 +3,10 @@
     <b-row>
       <b-col offset="1" sm="10">
         <p class="signup-title h5 text-info text-center">ユーザー登録</p>
-        <b-form @submit="onSignupSubmit">
+        <b-row>
+          <b-col><router-link :to="{ name: 'Login'}" class="btn btn-info signup-btn">戻る</router-link></b-col>
+        </b-row>
+        <b-form @submit="onSignupSubmit" class="signup-btn">
           <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
           <b-form-group id="input-group-1" label="性" label-for="input-1">
             <b-form-input
@@ -134,5 +137,8 @@
 <style scoped>
   .signup-title {
     margin: 20px auto;
+  }
+  .signup-btn {
+    margin-top: 15px;
   }
 </style>
