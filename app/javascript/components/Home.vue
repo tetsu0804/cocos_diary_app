@@ -1,48 +1,46 @@
 <template>
   <div>
-  <b-row>
-  <b-col offset="1" sm="10">
-    <div class="overflow-auto home-screen">
-      <b-card-group deck  :key="i" class="homeCardStyle">
-        <div sm="4" class="homeCard" v-for="blog in prossingBlogs" :key="blog.id">
-          <b-card
-            :img-src="blog.blog_image"
-            :img-alt="blog.blog_image"
-            img-top
-            img-height="360px"
-            img-width="320px"
-            tag="article"
-            style="width: 20rem;"
-            border-variant="info"
-          >
-            <router-link class="btn btn-info homeBtn":to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.title }}</router-link>
-          </b-card>
+    <b-row>
+      <b-col offset="1" sm="10">
+        <div class="overflow-auto home-screen">
+          <b-card-group deck  :key="i" class="home-card-style">
+            <div sm="4" class="home-card" v-for="blog in prossingBlogs" :key="blog.id">
+              <b-card
+                :img-src="blog.blog_image"
+                :img-alt="blog.blog_image"
+                img-top
+                img-height="360px"
+                img-width="320px"
+                tag="article"
+                style="width: 20rem;"
+                border-variant="info"
+              >
+                <router-link class="btn btn-info home-btn":to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.title }}</router-link>
+              </b-card>
+            </div>
+          </b-card-group>
+          <b-col offset="5">
+            <paginate
+              :page-count="pagesAllNumber"
+              :page-range="3"
+              :margin-pages="2"
+              :click-handler="clickCallback"
+              :prev-text="'Prev'"
+              :next-text="'Next'"
+              :container-class="'pagination'"
+              page-class="'page-item'"
+              :page-link-class="'page-link'"
+              :prev-class="'page-item'"
+              :prev-link-class="'page-link'"
+              :next-class="'page-item'"
+              :next-link-class="'page-link'"
+              >
+            </paginate>
+          </b-col>
         </div>
-      </b-card-group>
-      <b-col offset="5">
-        <paginate
-          :page-count="pagesAllNumber"
-          :page-range="3"
-          :margin-pages="2"
-          :click-handler="clickCallback"
-          :prev-text="'Prev'"
-          :next-text="'Next'"
-          :container-class="'pagination'"
-          page-class="'page-item'"
-          :page-link-class="'page-link'"
-          :prev-class="'page-item'"
-          :prev-link-class="'page-link'"
-          :next-class="'page-item'"
-          :next-link-class="'page-link'"
-          >
-        </paginate>
       </b-col>
-
-    </div>
-    </b-col>
     </b-row>
   </div>
-
 </template>
 
 <script>
@@ -84,13 +82,13 @@ import axios from "axios"
   .home-screen {
     margin-top: 15px;
   }
-  .homeCardStyle {
+  .home-card-style {
     margin: 0 auto;
   }
-  .homeCard {
+  .home-card {
     margin: 10px auto;
   }
-  .homeBtn {
+  .home-btn {
     width: 100%;
     margin: 0 auto;
   }

@@ -15,8 +15,10 @@
               type="text"
               required
               placeholder="吉田"
+              data_last_name
             ></b-form-input>
           </b-form-group>
+          <p>{{ last_name }}</p>
 
           <b-form-group
             id="input-group-2"
@@ -31,6 +33,7 @@
               placeholder="太郎"
             ></b-form-input>
           </b-form-group>
+          <p>{{ first_name }}</p>
 
           <b-form-group id="input-group-3" label="メールアドレス" label-for="input-3">
             <b-form-input
@@ -41,6 +44,7 @@
               placeholder="example@example.com"
               ></b-form-input>
           </b-form-group>
+          <p>{{ email }}</p>
 
           <b-form-group id="input-group-4" label="パスワード" label-for="input-4">
             <b-form-input
