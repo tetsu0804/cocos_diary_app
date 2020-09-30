@@ -8,9 +8,9 @@
         </b-row>
         <b-form @submit="onSignupSubmit" class="signup-btn">
           <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
-          <b-form-group id="input-group-1" label="性" label-for="input-1">
+          <b-form-group id="signup-input-group-1" label="性" label-for="signup-input-1">
             <b-form-input
-              id="input-1"
+              id="signup-input-1"
               v-model="last_name"
               type="text"
               required
@@ -21,12 +21,12 @@
           <p>{{ last_name }}</p>
 
           <b-form-group
-            id="input-group-2"
+            id="signup-input-group-2"
             label="名"
-            label-for="input-2"
+            label-for="signup-input-2"
           >
             <b-form-input
-              id="input-2"
+              id="signup-input-2"
               v-model="first_name"
               type="text"
               required
@@ -35,9 +35,9 @@
           </b-form-group>
           <p>{{ first_name }}</p>
 
-          <b-form-group id="input-group-3" label="メールアドレス" label-for="input-3">
+          <b-form-group id="signup-input-group-3" label="メールアドレス" label-for="signup-input-3">
             <b-form-input
-              id="input-3"
+              id="signup-input-3"
               v-model="email"
               type="email"
               required
@@ -46,25 +46,25 @@
           </b-form-group>
           <p>{{ email }}</p>
 
-          <b-form-group id="input-group-4" label="パスワード" label-for="input-4">
+          <b-form-group id="signup-input-group-4" label="パスワード" label-for="signup-input-4">
             <b-form-input
-              id="input-4"
+              id="signup-input-4"
               v-model="password"
               type="password"
               required
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-5" label="パスワード確認" label-for="input-5">
+          <b-form-group id="signup-input-group-5" label="パスワード確認" label-for="signup-input-5">
             <b-form-input
-              id="input-5"
+              id="signup-input-5"
               v-model="passsword_confirmation"
               type="password"
               required
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="info">登録</b-button>
+          <b-button id="signup-btn" type="submit" variant="info">登録</b-button>
           <router-link :to="{name: 'Login'}" class="btn btn-info">ログイン</router-link>
         </b-form>
       </b-col>
@@ -112,7 +112,6 @@
         this.$store.dispatch('doFetchStateLastName', response.data.user.last_name)
         this.$store.dispatch('doFetchStateEmail', response.data.user.email)
         this.signedInTrue(document.cookie)
-        debugger
         this.$router.push('/')
       },
       signedInTrue(data) {

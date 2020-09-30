@@ -9,12 +9,12 @@
         <b-form @submit="onBlogsEditSubmit">
 
         <b-form-group
-          id="input-group-1"
+          id="blog-edit-input-group-1"
           label="タイトル"
-          label-for="input-1"
+          label-for="blog-edit-input-1"
         >
           <b-form-input
-            id="input-1"
+            id="blog-edit-input-1"
             v-model="blog.title"
             type="text"
             required
@@ -23,19 +23,19 @@
         </b-form-group>
 
         <b-form-group
-          id="textarea-rows"
+          id="blog-edit-textarea-rows"
           label="日記"
-          label-for="input-2"
+          label-for="blog-edit-input-2"
           >
           <b-form-textarea
             v-model="blog.content"
-            id="textarea-rows"
+            id="blog-edit-input-2"
             placeholder="朝7時に起きてすぐにウンチを.................."
             rows="8"
           ></b-form-textarea>
         </b-form-group>
 
-          <b-button block class="blog-new-btn" variant="info" type="submit">投稿</b-button>
+          <b-button block class="blog-edit-finish-btn" variant="info" type="submit">投稿</b-button>
         </b-form>
       </b-col>
     </b-row>

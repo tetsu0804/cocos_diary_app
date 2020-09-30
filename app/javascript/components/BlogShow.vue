@@ -25,7 +25,7 @@
 
          <b-row v-if="this.$store.state.id === this.blog.user_id">
           <b-col>
-            <router-link :to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="blog-show-btn btn btn-info" >編集</router-link>
+            <router-link id="blog-edit-btn":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="blog-show-btn btn btn-info" >編集</router-link>
          </b-col>
          <b-col>
           <b-button class="blog-show-btn" variant="danger" v-on:click="deleteBlogs">削除</b-button>

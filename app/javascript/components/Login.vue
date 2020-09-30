@@ -5,7 +5,7 @@
     img-src="/img/IMG_0883.JPG"
     img-alt="Card Image"
   >
-    <b-card-text class="h1 text-white login-title-text">
+    <b-card-text id="login-text-title" class="h1 text-white login-title-text">
       COCO's DIARY....login
     </b-card-text>
     <b-card-text class="login-form">
@@ -13,22 +13,24 @@
       <b-form @submit="onLoginSubmit">
         <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
 
-          <b-form-group id="input-group-1" label="メールアドレス" label-for="input-1" class="text-info">
+          <b-form-group id="login-input-group-1" label="メールアドレス" label-for="login-input-1" class="text-info">
             <b-form-input
-              id="input-1"
+              id="login-input-1"
               v-model="email"
               type="email"
               required
               placeholder="example@example.com"
+              class="login-email"
               ></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="パスワード" label-for="input-2" class="text-info">
+          <b-form-group id="login-input-group-2" label="パスワード" label-for="login-input-2" class="text-info">
             <b-form-input
-              id="input-2"
+              id="login-input-2"
               v-model="password"
               type="password"
               required
+              class="login-password"
             ></b-form-input>
           </b-form-group>
           <div class="login-btn">

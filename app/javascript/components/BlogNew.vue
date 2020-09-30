@@ -7,12 +7,12 @@
         <b-form @submit="onBlogsNewSubmit">
 
         <b-form-group
-          id="input-group-1"
+          id="blog-new-input-group-1"
           label="タイトル"
-          label-for="input-1"
+          label-for="blog-new-input-1"
         >
           <b-form-input
-            id="input-1"
+            id="blog-new-input-1"
             v-model="title"
             type="text"
             required
@@ -21,13 +21,13 @@
         </b-form-group>
 
         <b-form-group
-          id="textarea-rows"
+          id="blog-new-textarea-rows"
           label="日記"
-          label-for="input-2"
+          label-for="blog-new-input-2"
           >
           <b-form-textarea
             v-model="content"
-            id="textarea-rows"
+            id="blog-new-input-2"
             placeholder="朝7時に起きてすぐにウンチを.................."
             rows="8"
           ></b-form-textarea>
@@ -87,7 +87,10 @@ import axios from "axios"
              this.content = ""
              this.file = ""
              this.uploadedImage = ''
-             this.$store.dispatch('doFetchStateBlogs', { id: res.data.blog.id, title: res.data.blog.title, content: res.data.blog.content, created_at: res.data.blog.created_at } )
+             this.$store.dispatch('doFeatchStateBlogId', res.data.blog.id)
+             this.$store.dispatch('doFeatchStateBlogTitle', res.data.blog.title)
+             this.$store.dispatch('doFeatchStateBlogContent', res.data.blog.content)
+             this.$store.dispatch('doFeatchStateBlogCreatedAt', res.data.blog.created_at)
              this.$router.push('/')
              resolve(res)
            }).catch(e => {

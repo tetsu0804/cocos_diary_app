@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home-blogs">
     <b-row>
       <b-col offset="1" sm="10">
         <div class="overflow-auto home-screen">
@@ -15,7 +15,7 @@
                 style="width: 20rem;"
                 border-variant="info"
               >
-                <router-link class="btn btn-info home-btn":to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.title }}</router-link>
+                <router-link id="`${blog.id}`" class="btn btn-info home-btn" :to="{name: 'BlogShow', params: {user_id: blog.user_id, id: blog.id}}">{{ blog.title }}</router-link>
               </b-card>
             </div>
           </b-card-group>
@@ -62,6 +62,7 @@ import axios from "axios"
       })
     },
     mounted() {
+debugger
     },
     computed: {
       pagesAllNumber() {

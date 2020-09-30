@@ -8,11 +8,11 @@
 
             <router-link class="nav-item" :to="{ name: 'Home' }"><b-icon font-scale="2" icon="house-door" aria-hidden="true"></b-icon></router-link>
 
-            <router-link  :to="{ name: 'UserShow', params: { id: `${this.$store.state.id}`}}" class="nav-item"> {{ first_name }}</router-link>
+            <router-link id="header_user_name" :to="{ name: 'UserShow', params: { id: `${this.$store.state.id}`}}" class="nav-item"> {{ first_name }}</router-link>
 
-            <b-nav-item  class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
+            <b-nav-item  id="header_logout" class="nav-item2" v-on:click="logOut">ログアウト</b-nav-item>
 
-            <router-link class="nav-item" :to="{ name: 'BlogNew', params: { id: `${this.id}`}}"> ブログ作成</router-link>
+            <router-link id="header-blog-make" class="nav-item" :to="{ name: 'BlogNew', params: { id: `${this.id}`}}"> ブログ作成</router-link>
           </b-navbar-nav>
         </b-navbar>
       </b-col>
