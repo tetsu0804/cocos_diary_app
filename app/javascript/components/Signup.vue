@@ -16,6 +16,7 @@
               required
               placeholder="吉田"
               data_last_name
+              class="signup-input"
             ></b-form-input>
           </b-form-group>
           <p>{{ last_name }}</p>
@@ -31,6 +32,7 @@
               type="text"
               required
               placeholder="太郎"
+              class="signup-input"
             ></b-form-input>
           </b-form-group>
           <p>{{ first_name }}</p>
@@ -42,6 +44,7 @@
               type="email"
               required
               placeholder="example@example.com"
+              class="signup-input"
               ></b-form-input>
           </b-form-group>
           <p>{{ email }}</p>
@@ -52,6 +55,7 @@
               v-model="password"
               type="password"
               required
+              class="signup-input"
             ></b-form-input>
           </b-form-group>
 
@@ -61,6 +65,7 @@
               v-model="passsword_confirmation"
               type="password"
               required
+              class="signup-input"
             ></b-form-input>
           </b-form-group>
 

@@ -36,7 +36,7 @@
               ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="info">登録</b-button>
+          <b-button class="user-edit-btn" type="submit" variant="info">登録</b-button>
         </b-form>
       </b-col>
     </b-row>

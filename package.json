@@ -39,7 +39,7 @@
   },
   "jest": {
     "roots": [
-      "__tests__"
+      "__tests__/jest"
     ],
     "moduleFileExtensions": [
       "js",

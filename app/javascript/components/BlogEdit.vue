@@ -54,7 +54,9 @@
     },
     created() {
       let blogEditUrl = this.$route.path
+
       let blogEditUrlArrays = blogEditUrl.split('/')
+
       axios.get(`/api/v1/users/${this.$store.state.id}/blogs/${Number(blogEditUrlArrays[4])}`)
       .then(response => {
         let self = this
@@ -65,10 +67,8 @@
     computed: {
     },
     updated() {
-      console.log('updated')
     },
     mounted() {
-      console.log('mounted')
     },
     methods: {
       onBlogsEditSubmit() {

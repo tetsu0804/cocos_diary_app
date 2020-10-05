@@ -16,7 +16,7 @@
         <b-row>
           <b-col>
             <b-overlay :show="show" rounded="sm">
-              <b-card-text class="text-center">
+              <b-card-text class="text-center blog-show-content-border">
                 {{ blog.content}}
               </b-card-text>
             </b-overlay>
@@ -28,7 +28,7 @@
             <router-link id="blog-edit-btn":to="{name:'BlogEdit', params: {user_id: this.blog.user_id, id: this.blog.id, title: this.blog.title, content: this.blog.content, created_at: this.blog.created_at, first_name: this.user.first_name, last_name: this.user.last_name}}" class="blog-show-btn btn btn-info" >編集</router-link>
          </b-col>
          <b-col>
-          <b-button class="blog-show-btn" variant="danger" v-on:click="deleteBlogs">削除</b-button>
+          <b-button class="blog-show-btn blog-delete-btn" variant="danger" v-on:click="deleteBlogs">削除</b-button>
          </b-col>
         </b-row>
       </b-col>

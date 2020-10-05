@@ -20,7 +20,7 @@
               type="email"
               required
               placeholder="example@example.com"
-              class="login-email"
+              class="login-input login-email"
               ></b-form-input>
           </b-form-group>
 
@@ -30,7 +30,7 @@
               v-model="password"
               type="password"
               required
-              class="login-password"
+              class="login-input login-password"
             ></b-form-input>
           </b-form-group>
           <div class="login-btn">
