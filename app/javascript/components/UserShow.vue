@@ -6,7 +6,7 @@
           <b-card title="プロフィール" text-variant="info" border-variant="info" bg-variant="white">
             <b-card-text class="user-show-data">{{ last_name }} {{ first_name }} さん</b-card-text>
             <b-card-text class="user-show-data">メールアドレス: {{ email}}</b-card-text>
-            <router-link :to="{ name: 'UserEdit', params: {id: id, first_name: first_name, last_name: last_name, email: email }}" class="btn btn-info">編集</router-link>
+            <router-link :to="{ name: 'UserEdit', params: {id: id, first_name: first_name, last_name: last_name, email: email }}" class="btn btn-info user-show-edit">編集</router-link>
             <b-button variant="danger" v-on:click="userDelete">削除</b-button>
           </b-card>
         </b-overlay>

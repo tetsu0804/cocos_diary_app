@@ -44,6 +44,27 @@ module.exports = {
       .end()
   },
 
+  'user編集成功': function(browser) {
+    browser
+      .url('http://localhost:5000/#/login')
+      .setValue('#login-input-1', 'test@test.com')
+      .setValue('#login-input-2', 'password')
+      .pause(3000)
+      .click('.login-login-btn')
+      .pause(3000)
+      .click('#header_user_name')
+      .pause(3000)
+      .click('.user-show-edit')
+      .pause(3000)
+      .clearValue('#input-1')
+      .pause(3000)
+      .setValue('#input-1', '吉田')
+      .pause(3000)
+      .click('.user-edit-btn')
+      .pause(3000)
+      .assert.containsText('.user-show-data', '吉田 絵理子 さん')
+      .end()
+  },
   'login失敗': function(browser) {
     browser
       .url('http://localhost:5000/#/login')
