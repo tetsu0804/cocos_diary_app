@@ -62,7 +62,7 @@ import axios from "axios"
       })
     },
     mounted() {
-    debugger
+
     },
     computed: {
       pagesAllNumber() {

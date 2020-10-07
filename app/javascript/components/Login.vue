@@ -1,15 +1,69 @@
-<template>
-  <div>
-    <b-card
-    overlay
-    img-src="/img/IMG_0883.JPG"
-    img-alt="Card Image"
-  >
-    <b-card-text id="login-text-title" class="h1 text-white login-title-text">
-      COCO's DIARY....login
-    </b-card-text>
-    <b-card-text class="login-form">
-      <b-col sm="6">
+<template >
+
+  <b-row v-if="this.widthTruthy === true" class="big-login-form">
+    <div>
+
+      <b-card
+      overlay
+      img-src="/img/IMG_0883.JPG"
+      img-alt="Card Image"
+      >
+      <b-card-text id="login-text-title" class="h1 text-white login-title-text">
+        COCO's DIARY....login
+      </b-card-text>
+
+      <b-card-text class="login-form" >
+        <b-col cols="6">
+        <b-form @submit="onLoginSubmit">
+          <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
+
+            <b-form-group id="login-input-group-1" label="メールアドレス" label-for="login-input-1" class="text-info">
+              <b-form-input
+                id="login-input-1"
+                v-model="email"
+                type="email"
+                required
+                placeholder="example@example.com"
+                class="login-input login-email"
+                ></b-form-input>
+            </b-form-group>
+
+            <b-form-group id="login-input-group-2" label="パスワード" label-for="login-input-2" class="text-info">
+              <b-form-input
+                id="login-input-2"
+                v-model="password"
+                type="password"
+                required
+                class="login-input login-password"
+              ></b-form-input>
+            </b-form-group>
+            <div class="login-btn">
+            <b-button type="submit" variant="info" class="login-login-btn">ログイン</b-button>
+            <router-link :to="{name: 'Signup'}" class="btn btn-info login-signup-btn">ユーザー登録</router-link>
+            </div>
+          </b-form>
+          </b-col>
+        </b-card-text>
+
+      </b-card>
+      <p>{{ width }}</p>
+    </div>
+  </b-row>
+
+  <b-row v-else-if="this.widthTruthy === false">
+    <div>
+      <b-card
+        overlay
+        img-src="/img/IMG_0883.JPG"
+        img-alt="Card Image"
+        class="small-display-top"
+      >
+        <b-card-text id="login-text-title" class="h1 text-white small-login-title-text">
+          COCO's DIARY....login
+        </b-card-text>
+      </b-card>
+
+      <b-col offset="1" cols="10" class="small-login-form">
       <b-form @submit="onLoginSubmit">
         <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
 
@@ -33,15 +87,17 @@
               class="login-input login-password"
             ></b-form-input>
           </b-form-group>
+
           <div class="login-btn">
-          <b-button type="submit" variant="info" class="login-login-btn">ログイン</b-button>
-          <router-link :to="{name: 'Signup'}" class="btn btn-info login-signup-btn">ユーザー登録</router-link>
+            <b-button type="submit" variant="info" class="login-login-btn">ログイン</b-button>
+            <router-link :to="{name: 'Signup'}" class="btn btn-info login-signup-btn">ユーザー登録</router-link>
           </div>
-        </b-form>
-        </b-col>
-      </b-card-text>
-    </b-card>
-  </div>
+
+      </b-form>
+      </b-col>
+      <p>{{ width }}</p>
+    </div>
+  </b-row>
 </template>
 
 <script>
@@ -51,17 +107,23 @@
       return {
         email: '',
         password: '',
-        error: ''
+        error: '',
+        width: window.innerWidth,
+        widthTruthy: true
       }
     },
     mounted() {
-    debugger
+    window.addEventListener('resize', this.loginResize)
+    console.log(this.height)
     },
     created() {
       this.checkLoginCookieTrue()
     },
     updated() {
       this.checkLoginCookieTrue()
+    },
+    beforeDestroy: function () {
+      window.removeEventListener('resize', this.handleResize)
     },
     methods: {
       onLoginSubmit() {
@@ -104,12 +166,25 @@
         if (loginCheckCookies.includes("signedIn=true") || loginCheckCookies.includes(" signedIn=true") ) {
           this.$router.push('/')
         }
+      },
+      loginResize() {
+        this.width = window.innerWidth
+        if(this.width > 576) {
+
+          this.widthTruthy = true
+        } else {
+
+          this.widthTruthy = false
+        }
       }
     }
   }
 </script>
 
 <style scoped>
+  .big-login-form {
+    margin-top: 8%;
+  }
   .login-form {
     margin-top:2%;
   }
@@ -126,5 +201,14 @@
   }
   .login-signup-btn {
     width: 48%;
+  }
+  .small-login-title-text {
+    text-align: center;
+  }
+  .small-login-form {
+    margin-top: 15px;
+  }
+  .small-display-top {
+    margin-top: 25%;
   }
 </style>
