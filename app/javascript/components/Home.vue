@@ -58,11 +58,11 @@ import axios from "axios"
         let self = this
         let currentNumber =  this.thisPageNum * 9
         self.blogs = response.data.blogs
-debugger
         self.prossingBlogs = self.blogs.slice(currentNumber - 9, currentNumber)
       })
     },
     mounted() {
+    debugger
     },
     computed: {
       pagesAllNumber() {

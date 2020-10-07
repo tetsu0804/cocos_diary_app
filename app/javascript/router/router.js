@@ -8,7 +8,7 @@ import UserEdit from "../components/UserEdit.vue"
 import BlogNew from "../components/BlogNew.vue"
 import BlogShow from "../components/BlogShow.vue"
 import BlogEdit from "../components/BlogEdit.vue"
-
+import store  from '../store/store'
 Vue.use(Router)
 
 const router = new Router({
@@ -32,12 +32,14 @@ router.beforeEach((to, from, next) => {
     cookiArrays.push(el.trim())
   })
 
-
-  if(to.name === 'Signup' && !cookiArrays.includes('signedIn=true') ) {
+  if(to.name === 'Signup' && !cookiArrays.includes('signedIn=true') && (store.state.signIn === "") ) {
     next()
-  } else if (to.name !== 'Login' && !cookiArrays.includes('signedIn=true') ) {
+  } else if (to.name !== 'Login' && !cookiArrays.includes('signedIn=true') && (store.state.signIn === "") ) {
     next({ name: 'Login'})
 
+  } else if (to.name === 'Login' && (cookiArrays.includes('signedIn=true') || store.state.signIn === true) ) {
+
+    next({ name: 'Home'})
   } else {
     next()
   }
