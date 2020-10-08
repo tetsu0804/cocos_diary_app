@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col sm="12" md="10" offset-md="1">
         <p class="signup-title h5 text-info text-center">ユーザー登録</p>
         <b-row>
           <b-col><router-link :to="{ name: 'Login'}" class="btn btn-info signup-btn">戻る</router-link></b-col>
