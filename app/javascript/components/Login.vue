@@ -2,7 +2,6 @@
 
   <b-row v-if="this.widthTruthy === true" class="big-login-form">
     <div>
-
       <b-card
       overlay
       img-src="/img/IMG_0883.JPG"
@@ -218,6 +217,6 @@
     margin-top: 15px;
   }
   .small-display-top {
-    margin-top: 25%;
+    margin-top: 10%;
   }
 </style>
