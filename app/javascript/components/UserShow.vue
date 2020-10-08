@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col cols="12" offset-sm="1" sm="10">
         <b-overlay  rounded="sm" class="user-show" >
           <b-card title="プロフィール" text-variant="info" border-variant="info" bg-variant="white">
             <b-card-text class="user-show-data">{{ last_name }} {{ first_name }} さん</b-card-text>

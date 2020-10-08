@@ -1,5 +1,5 @@
 <template v-on:resize="headerResize">
-  <div>
+  <div  class="sticky-top">
     <b-row v-if="(this.$store.state.signIn === true) && (this.header_width_truthy === true)">
       <b-col offset="1" sm="10" style="background-color: #17a2b8"  key="header-desplay">
         <b-navbar toggleable="lg" type="dark" variant="info">

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col cols="12" offset-sm="1" sm="10">
 
         <b-row class="blog-show-table">
           <b-col class="blog-show-border text-info text-center" >作成者: {{ user.last_name}} {{ user.first_name }}さん</b-col>
@@ -11,7 +11,7 @@
           <b-col class="blog-show-title-border text-info">タイトル: {{ blog.title }}</b-col>
         </b-row>
 
-          <b-img-lazy :src="blog.blog_image" alt="blog.blog_image" width="600px" heigth="650px" center rounded="true" class="blog-show-image"></b-img-lazy>
+          <b-img :src="blog.blog_image" alt="blog.blog_image" center rounded="true" class="blog-show-image"></b-img>
 
         <b-row>
           <b-col>
@@ -90,6 +90,7 @@
     border-radius: 6px;
   }
   .blog-show-image {
+    width: 100%;
     margin: 15px 0;
     border: solid 2px #17a2b8;
     border-radius: 6px;

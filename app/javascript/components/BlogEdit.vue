@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col cols="12" offset-sm="1" sm="10">
         <router-link :to="{name: 'BlogShow', params: {user_id: this.user.id, id: this.blog.id}}" class="btn btn-info blog-new-btn text-white">戻る</router-link>
 
         <p class="text-center h3 text-info">{{ blog.created_at | moment("YYYY年M月D日")}}の{{ user.last_name }} {{ user.first_name }} さんのここの日記を編集</p>

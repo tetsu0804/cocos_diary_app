@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col cols="12" offset-sm="1" sm="10">
         <p class="user-edit-title h5 text-info text-center">編集画面</p>
         <b-form @submit="onUserEditSubmit">
           <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>

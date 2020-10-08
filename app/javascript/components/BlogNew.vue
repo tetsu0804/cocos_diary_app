@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-row>
-      <b-col offset="1" sm="10">
+      <b-col cols="12" offset-sm="1" sm="10">
         <p class="text-center h3 text-info">{{ new Date() | moment("YYYY年M月D日")}}の{{ last_name }} {{ first_name }} さんの新しいここの日記</p>
 
         <b-form @submit="onBlogsNewSubmit">

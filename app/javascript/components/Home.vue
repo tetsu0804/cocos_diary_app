@@ -19,7 +19,7 @@
               </b-card>
             </div>
           </b-card-group>
-          <b-col offset="5">
+          <b-col offset="3" offset-sm="5">
             <paginate
               :page-count="pagesAllNumber"
               :page-range="3"
