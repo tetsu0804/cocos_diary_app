@@ -58,7 +58,7 @@
         img-alt="Card Image"
         class="small-display-top"
       >
-        <b-card-text id="login-text-title" class="h1 text-white small-login-title-text">
+        <b-card-text id="login-text-title" class="h2 text-white small-login-title-text">
           COCO's DIARY....login
         </b-card-text>
       </b-card>
@@ -109,14 +109,22 @@
         password: '',
         error: '',
         width: window.innerWidth,
-        widthTruthy: true
+        widthTruthy: '',
       }
     },
     mounted() {
-    window.addEventListener('resize', this.loginResize)
+      this.width = window.innerWidth
+        if(this.width > 576) {
+          this.widthTruthy = true
+        } else {
+          this.widthTruthy = false
+        }
+
+      window.addEventListener('resize', this.loginResize)
     console.log(this.height)
     },
     created() {
+
       this.checkLoginCookieTrue()
     },
     updated() {
@@ -169,6 +177,7 @@
       },
       loginResize() {
         this.width = window.innerWidth
+
         if(this.width > 576) {
 
           this.widthTruthy = true
