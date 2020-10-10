@@ -22,4 +22,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  username: <%= ENV['COCO_DIARY_APP'] %>
+  database: coco_diary_app_production
+  url: <%= ENV['DATABASE_URL'] %>
+    #db/production.sqlite3
+    #
