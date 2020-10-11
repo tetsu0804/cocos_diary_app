@@ -25,5 +25,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
+  url: <%= EVN['DATABASE_URL'] %>
     #db/production.sqlite3
     #
