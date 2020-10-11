@@ -23,8 +23,9 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   pool: 5
+  port: 5432
   url: <%= ENV['DATABASE_URL'] %>
     #db/production.sqlite3
     #
