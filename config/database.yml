@@ -27,5 +27,7 @@ production:
   pool: 5
   port: 5432
   url: <%= ENV['DATABASE_URL'] %>
+  username: <%= ENV['YOUR_NAME'] %>
+  password: <%= ENV['YOUR_PASSWORD'] %>
     #db/production.sqlite3
     #
